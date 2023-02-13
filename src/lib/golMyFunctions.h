@@ -15,6 +15,11 @@
 #ifndef golMyFunctions_h
 #define golMyFunctions_h
 
+#include <string>
+#include <vector>
+
+using std::string;
+using std::vector;
 /**
 * \file golMyFunctions.h
 * \brief Various Utilities.
@@ -28,6 +33,16 @@ namespace gol
 */
 int MyFirstAddFunction(int a, int b);
 
+// Create a class to store the status of cells, and with some functionalities
+class GridDataStructure
+{
+  public: 
+    GridDataStructure(const int& num_rows, const int num_columns);
+  private:
+    int row_input;
+    int columns_input;
+    int alive_cell_input;
+};
 } // end namespace
 
 #endif
