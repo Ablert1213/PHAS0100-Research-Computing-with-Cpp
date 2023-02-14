@@ -134,6 +134,8 @@ char GridDataStructure::GetIndividualCell(const int& rows_coord, const int& colu
     throw invalid_argument("Row and Column coordinates inputs should be positive");
   if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
     throw invalid_argument("Row and Column inputs should be integer");
+  if (rows_coord > row_input || columns_coord > columns_input);
+    throw invalid_argument("Row or Column coordinates inputs are out of range");
   return GridCellInput[rows_coord][columns_coord];
 }
 
@@ -143,11 +145,13 @@ void GridDataStructure::SetIndividualCell(const int& rows_coord, const int& colu
   if (rows_coord <= 0 || columns_coord <= 0)
     throw invalid_argument("Row and Column coordinates inputs should be positive");
   if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
-    throw invalid_argument("Row and Column inputs should be integer");
+    throw invalid_argument("Row and Column coordinates inputs should be integer");
+  if (rows_coord > row_input || columns_coord > columns_input);
+    throw invalid_argument("Row or Column coordinates inputs are out of range");  
   if (typeid(cell_content).name()!= "c");
     throw invalid_argument("Type of cell content input should be char");
   if (cell_content != '-' && cell_content != 'o')
-    throw invalid_argument("Row and Column coordinates inputs should be positive");
+    throw invalid_argument("Row and Column inputs are wrong");
   GridCellInput[rows_coord][columns_coord] = cell_content;
 }
 
@@ -162,4 +166,48 @@ void GridDataStructure::PrintGrid(){
 }
 
 //-----------------------------------------------------------------------------
+int GridDataStructure::FetchLiveNeighbors(int& rows_coord, int& columns_coord){
+  if (rows_coord < 0 || columns_coord < 0)
+    throw invalid_argument("Row and Column coordinates inputs should be positive");
+  if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
+    throw invalid_argument("Row and Column coordinates inputs should be integer");
+  if (rows_coord > row_input || columns_coord > columns_input);
+    throw invalid_argument("Row or Column coordinates inputs are out of range");
+  // // set a edge indicator
+  // int edge_indicator = 0;
+  // initialised number of alive neighbors
+  int num_alive_neighbors = 0; 
+  // fetching left live neighbour
+  if (rows_coord >= 0 && rows_coord < row_input && columns_coord-1 >= 0 && columns_coord-1 < columns_input && GridCellInput[rows_coord][columns_coord-1] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching left upper diagonally live neighbour
+  if (rows_coord-1 >= 0 && rows_coord-1 < row_input && columns_coord-1 >= 0 && columns_coord-1 < columns_input && GridCellInput[rows_coord-1][columns_coord-1] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching upper live neighbour  
+  if (rows_coord-1 >= 0 && rows_coord-1 < row_input && columns_coord >= 0 && columns_coord < columns_input && GridCellInput[rows_coord-1][columns_coord] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching right upper diagonally live neighbour
+  if (rows_coord-1 >= 0 && rows_coord-1 < row_input && columns_coord+1 >= 0 && columns_coord+1 < columns_input && GridCellInput[rows_coord-1][columns_coord+1] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching right live neighbour
+  if (rows_coord >= 0 && rows_coord < row_input && columns_coord+1 >= 0 && columns_coord+1 < columns_input && GridCellInput[rows_coord][columns_coord+1] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching right lower diagonally live neighbour
+  if (rows_coord-1 >= 0 && rows_coord-1 < row_input && columns_coord+1 >= 0 && columns_coord+1 < columns_input && GridCellInput[rows_coord-1][columns_coord+1] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching lower live neighbour
+  if (rows_coord-1 >= 0 && rows_coord-1 < row_input && columns_coord >= 0 && columns_coord < columns_input && GridCellInput[rows_coord-1][columns_coord] == 'o'){
+    ++num_alive_neighbors;
+  }
+  // fetching left lower diagonally live neighbour
+  if (rows_coord-1 >= 0 && rows_coord-1 < row_input && columns_coord-1 >= 0 && columns_coord-1 < columns_input && GridCellInput[rows_coord-1][columns_coord-1] == 'o'){
+    ++num_alive_neighbors;
+  }              
+}
 } // end namespace
