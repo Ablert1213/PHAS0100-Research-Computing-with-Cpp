@@ -66,14 +66,13 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
 
 //-----------------------------------------------------------------------------
 GridDataStructure::GridDataStructure(string& file_path){
-  std::ifstream file_handle("a.txt");
-  vector<vector<int>> file_input;
+  std::ifstream file_handle(file_path);
   int count = 0;
   if (file_handle.is_open()) {
     string file_line;
     // std::cout << file_line;
     while (std::getline(file_handle, file_line)) {
-      vector<int> file_row_input;
+      vector<char> file_row_input;
       
       for (char &element : file_line){
         if (element == ' '){
@@ -81,18 +80,18 @@ GridDataStructure::GridDataStructure(string& file_path){
         }
         else if (element == 'o')
         {
-          file_row_input.push_back(1);
+          file_row_input.push_back('o');
           ++count;
         }
         else if (element == '-'){
-          file_row_input.push_back(0);
+          file_row_input.push_back('-');
         }
       }
-    file_input.push_back(file_row_input);
+    GridCellInput.push_back(file_row_input);
     }
-  row_input = file_input.size();
+  row_input = GridCellInput.size();
   // as number of columns will be the same in one text, so we only take first line to measure.
-  columns_input = file_input[0].size();
+  columns_input = GridCellInput[0].size();
   alive_cell_input = count;
   }
   else {
@@ -102,5 +101,14 @@ GridDataStructure::GridDataStructure(string& file_path){
 }
 
 //-----------------------------------------------------------------------------
+void GridDataStructure::PrintGrid(){
+  for (int count_row = 0; count_row < row_input; ++count_row){
+    for (int count_cols = 0; count_cols < columns_input; ++count_cols){
+      std::cout << GridCellInput[count_row][count_cols] <<" ";
+    }
+  std::cout << std::endl;
+  }
+}
 
+//-----------------------------------------------------------------------------
 } // end namespace

@@ -40,10 +40,13 @@ class GridDataStructure
     GridDataStructure(const int& num_rows, const int& num_columns);
     GridDataStructure(const int& num_rows, const int& num_columns, const int& num_alive_cells);
     GridDataStructure(string& file_path);
+    void PrintGrid();
   private:
     int row_input;
     int columns_input;
     int alive_cell_input;
+    vector<vector<char>> GridCellInput;
+
 };
 } // end namespace
 
