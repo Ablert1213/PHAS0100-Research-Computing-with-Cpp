@@ -25,6 +25,7 @@
 using std::string;
 using std::vector;
 using std::invalid_argument;
+using std::cout;
 namespace gol {
 
 //-----------------------------------------------------------------------------
@@ -47,6 +48,18 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
   srand (time(NULL));
   // randomly choose number of alive cells
   alive_cell_input = rand() % row_input * columns_input;
+  // initialised the grid vector
+  vector<vector<char>> InitialGridCellInput(num_rows, vector<char>(num_columns,'-'));
+  // set random x,y coordinates
+  for (int count = 0; count < alive_cell_input; ++count){
+    int rows_coord = rand() % row_input;
+    int columns_coord = rand() % columns_input;
+  if (InitialGridCellInput[rows_coord][columns_coord] == 'o'){--count; continue;}
+  else{
+    InitialGridCellInput[rows_coord][columns_coord] == 'o';
+  }
+  }
+  GridCellInput = InitialGridCellInput;
 }
 
 //-----------------------------------------------------------------------------
@@ -62,6 +75,20 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
   row_input = num_rows;
   columns_input = num_columns;
   alive_cell_input = num_alive_cells;
+  // initialised the grid vector
+  vector<vector<char>> InitialGridCellInput(num_rows, vector<char>(num_columns,'-'));
+  // initialize random seed:
+  srand (time(NULL));
+  // set random x,y coordinates
+  for (int count = 0; count < alive_cell_input; ++count){
+    int rows_coord = rand() % row_input;
+    int columns_coord = rand() % columns_input;
+  if (InitialGridCellInput[rows_coord][columns_coord] == 'o'){--count; continue;}
+  else{
+    InitialGridCellInput[rows_coord][columns_coord] == 'o';
+  }
+  }
+  GridCellInput = InitialGridCellInput;
   }
 
 //-----------------------------------------------------------------------------
@@ -70,7 +97,6 @@ GridDataStructure::GridDataStructure(string& file_path){
   int count = 0;
   if (file_handle.is_open()) {
     string file_line;
-    // std::cout << file_line;
     while (std::getline(file_handle, file_line)) {
       vector<char> file_row_input;
       
@@ -81,6 +107,7 @@ GridDataStructure::GridDataStructure(string& file_path){
         else if (element == 'o')
         {
           file_row_input.push_back('o');
+          // count alive cells
           ++count;
         }
         else if (element == '-'){
@@ -101,12 +128,36 @@ GridDataStructure::GridDataStructure(string& file_path){
 }
 
 //-----------------------------------------------------------------------------
+// get individual cell content 
+char GridDataStructure::GetIndividualCell(const int& rows_coord, const int& columns_coord){
+  if (rows_coord <= 0 || columns_coord <= 0)
+    throw invalid_argument("Row and Column coordinates inputs should be positive");
+  if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
+    throw invalid_argument("Row and Column inputs should be integer");
+  return GridCellInput[rows_coord][columns_coord];
+}
+
+//-----------------------------------------------------------------------------
+// set individual cell content 
+void GridDataStructure::SetIndividualCell(const int& rows_coord, const int& columns_coord, const char& cell_content){
+  if (rows_coord <= 0 || columns_coord <= 0)
+    throw invalid_argument("Row and Column coordinates inputs should be positive");
+  if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
+    throw invalid_argument("Row and Column inputs should be integer");
+  if (typeid(cell_content).name()!= "c");
+    throw invalid_argument("Type of cell content input should be char");
+  if (cell_content != '-' && cell_content != 'o')
+    throw invalid_argument("Row and Column coordinates inputs should be positive");
+  GridCellInput[rows_coord][columns_coord] = cell_content;
+}
+
+//-----------------------------------------------------------------------------
 void GridDataStructure::PrintGrid(){
   for (int count_row = 0; count_row < row_input; ++count_row){
     for (int count_cols = 0; count_cols < columns_input; ++count_cols){
-      std::cout << GridCellInput[count_row][count_cols] <<" ";
+      cout << GridCellInput[count_row][count_cols] <<" ";
     }
-  std::cout << std::endl;
+  cout << std::endl;
   }
 }
 

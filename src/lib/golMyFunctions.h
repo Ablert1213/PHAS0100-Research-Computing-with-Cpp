@@ -41,6 +41,9 @@ class GridDataStructure
     GridDataStructure(const int& num_rows, const int& num_columns, const int& num_alive_cells);
     GridDataStructure(string& file_path);
     void PrintGrid();
+    char GetIndividualCell(const int& rows_coord, const int& columns_coord);
+    void SetIndividualCell(const int& rows_coord, const int& columns_coord, const char& cell_content);
+    int FetchLiveNeighbors(const int& num_rows, const int& num_columns);
   private:
     int row_input;
     int columns_input;
