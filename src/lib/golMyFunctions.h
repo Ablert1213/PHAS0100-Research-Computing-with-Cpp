@@ -37,7 +37,9 @@ int MyFirstAddFunction(int a, int b);
 class GridDataStructure
 {
   public: 
-    GridDataStructure(const int& num_rows, const int num_columns);
+    GridDataStructure(const int& num_rows, const int& num_columns);
+    GridDataStructure(const int& num_rows, const int& num_columns, const int& num_alive_cells);
+    GridDataStructure(string& file_path);
   private:
     int row_input;
     int columns_input;

@@ -20,6 +20,7 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <fstream>
 
 using std::string;
 using std::vector;
@@ -31,8 +32,9 @@ int MyFirstAddFunction(int a, int b)
 {
   return a + b;
 }
+
 //-----------------------------------------------------------------------------
-GridDataStructure::GridDataStructure(const int& num_rows, const int num_columns){
+GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns){
   // filter rows and columns inputs 
   if (num_rows < 0 || num_columns < 0)
     throw invalid_argument("Row and Column inputs should be positive");
@@ -46,5 +48,59 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int num_columns)
   // randomly choose number of alive cells
   alive_cell_input = rand() % row_input * columns_input;
 }
+
+//-----------------------------------------------------------------------------
+GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns, const int& num_alive_cells){
+  // filter rows and columns inputs 
+  if (num_rows < 0 || num_columns < 0 || num_alive_cells < 0)
+    throw invalid_argument("Row, Column and alive cells inputs should be positive");
+  if (typeid(num_rows).name()!= "i" || typeid(num_columns).name()!= "i" || typeid(num_alive_cells).name()!= "i");
+    throw invalid_argument("Row, Column and alive cells inputs should be integer");
+  if (num_alive_cells > num_rows*num_columns);
+  throw invalid_argument("The alive cells input can larger than the total number of cells");
+  // store the grid
+  row_input = num_rows;
+  columns_input = num_columns;
+  alive_cell_input = num_alive_cells;
+  }
+
+//-----------------------------------------------------------------------------
+GridDataStructure::GridDataStructure(string& file_path){
+  std::ifstream file_handle("a.txt");
+  vector<vector<int>> file_input;
+  int count = 0;
+  if (file_handle.is_open()) {
+    string file_line;
+    // std::cout << file_line;
+    while (std::getline(file_handle, file_line)) {
+      vector<int> file_row_input;
+      
+      for (char &element : file_line){
+        if (element == ' '){
+          continue;
+        }
+        else if (element == 'o')
+        {
+          file_row_input.push_back(1);
+          ++count;
+        }
+        else if (element == '-'){
+          file_row_input.push_back(0);
+        }
+      }
+    file_input.push_back(file_row_input);
+    }
+  row_input = file_input.size();
+  // as number of columns will be the same in one text, so we only take first line to measure.
+  columns_input = file_input[0].size();
+  alive_cell_input = count;
+  }
+  else {
+    // show message:
+    throw invalid_argument("Error opening file");
+  }
+}
+
+//-----------------------------------------------------------------------------
 
 } // end namespace
