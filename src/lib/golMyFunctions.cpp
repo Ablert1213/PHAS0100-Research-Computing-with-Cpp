@@ -210,4 +210,6 @@ int GridDataStructure::FetchLiveNeighbors(int& rows_coord, int& columns_coord){
     ++num_alive_neighbors;
   }              
 }
+
+//-----------------------------------------------------------------------------
 } // end namespace
