@@ -33,7 +33,7 @@ class ImplementGol : public gol::GridDataStructure{
   public:
     using GridDataStructure::GridDataStructure;
     void TakeStep();
-    void PrintGrid();
+    void PrintNextGrid();
   protected:
     vector<vector<char>> Next_interation_Grid;
 

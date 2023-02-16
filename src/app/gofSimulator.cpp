@@ -37,16 +37,16 @@ using std::cerr;
 int main(int argc, char* argv[])
 {
 // print useful help message when run with no arguments and also when run with "--help" or "-h"
-  if (argc <= 2 ){
-    if (argc == 1 || std::strcmp(argv[1],"--help") == 0 || std::strcmp(argv[1],"-h") == 0){
-      cerr << "Help message: right format of input arguments to use this command line" << "\n"
-           << "(1) " << "First argument: " << argv[0] << " Other arguments:"<<" text_file_path.txt, number of generations to simulate" << "\n"
-           << "(2) " << "First argument: " << argv[0] << " Other arguments:"<<" number of rows, number of columns, number of generations to simulate" << "\n"
-           << "(3) " << "First argument: " << argv[0] << " Other arguments:"<<" number of rows, number of columns, number of alive cells, number of generations to simulate" << "\n"
-           << "More hints: " << "the size of grid and total number of initial alive cells should be reasonable"
-           << std::endl;
+    if (argc <= 2 ){
+        if (argc == 1 || std::strcmp(argv[1],"--help") == 0 || std::strcmp(argv[1],"-h") == 0){
+        cerr << "Help message: right format of input arguments to use this command line" << "\n"
+            << "(1) " << "First argument: " << argv[0] << " Other arguments:"<<" text_file_path.txt, number of generations to simulate" << "\n"
+            << "(2) " << "First argument: " << argv[0] << " Other arguments:"<<" number of rows, number of columns, number of generations to simulate" << "\n"
+            << "(3) " << "First argument: " << argv[0] << " Other arguments:"<<" number of rows, number of columns, number of alive cells, number of generations to simulate" << "\n"
+            << "More hints: " << "the size of grid and total number of initial alive cells should be reasonable"
+            << std::endl;
+            }
         }
-    }
 
     // (1) configure the Game of Life class of file_path input  
     else if (argc == 3){
@@ -62,7 +62,9 @@ int main(int argc, char* argv[])
         current_grid.PrintGrid();
 
         // set loop for number of iterations and print the grid out every time
+        // cout<< 'apple'<< std::endl;
         for (int iteration = 1; iteration <= num_generations; ++iteration){
+            // cout<< 'dog'<< std::endl;
             current_grid.TakeStep();
             cout<< iteration<< " generation grid: "<< std::endl;
             current_grid.PrintGrid();
@@ -116,9 +118,11 @@ int main(int argc, char* argv[])
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
     }
-    
+
     // throw invalid argument when the input argument is wrong
-    else;
+    else {
         throw invalid_argument("Please enter input with right and reasonable arguments");
-    return 0;
+        return 0;
+    }
+
 }

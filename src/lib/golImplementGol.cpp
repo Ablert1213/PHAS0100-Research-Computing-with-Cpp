@@ -54,10 +54,12 @@ void ImplementGol::TakeStep(){
             }
         }
     }
-}
+    // Next_interation_Grid = Next_interation_Grid;
+    Next_interation_Grid.swap(GridCellInput);
+  }
 
 //-----------------------------------------------------------------------------
-void ImplementGol::PrintGrid(){
+void ImplementGol::PrintNextGrid(){
   for (int count_row = 0; count_row < row_input; ++count_row){
     for (int count_cols = 0; count_cols < columns_input; ++count_cols){
       cout << Next_interation_Grid[count_row][count_cols] <<" ";
