@@ -19,6 +19,8 @@ set(TEST_CASES
   golBasicTest
   golCommandLineArgsTest
   golDataStructureTest
+  golGetSetCellTest
+  golDiffInstanceDiffAliveTest
   # Add name of new test file here (without .cpp extension) to build a new test executable
 )
 
@@ -36,5 +38,8 @@ endforeach()
 
 add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/golBasicTest)
 add_test(1File ${EXECUTABLE_OUTPUT_PATH}/golCommandLineArgsTest ${DATA_DIR}/input.txt)
-add_test(Test_instantiation_of_DataStructureClass ${EXECUTABLE_OUTPUT_PATH}/golDataStructureTest ${DATA_DIR}/glider.txt)
+add_test(Test_instantiation_of_DataStructureClass ${EXECUTABLE_OUTPUT_PATH}/golDataStructureTest)
+add_test(Get_Set_Cell_Test ${EXECUTABLE_OUTPUT_PATH}/golGetSetCellTest)
+add_test(Diff_instances_generate_diff_num_alive_cells_and_diff_patterns_Test ${EXECUTABLE_OUTPUT_PATH}/golDiffInstanceDiffAliveTest)
+
 # Add add_test line here to expose a new test executable to CTest

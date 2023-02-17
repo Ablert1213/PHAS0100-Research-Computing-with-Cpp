@@ -29,24 +29,13 @@ using std::string;
 using std::vector;
 using std::cout;
 
-TEST_CASE( "Test_instantiation_of_DataStructureClass", "[GridDataStructure]" ) {
+TEST_CASE( "Get_Set_Cell_Test", "[GridDataStructure]" ) {
   gol::GridDataStructure row_col_input = gol::GridDataStructure(8,9);
-  gol::GridDataStructure row_col_aliveCells_input = gol::GridDataStructure(8,9,4);
-  // string file_path = "glider.txt";
-  // gol::GridDataStructure filePath_aliveCells_input = gol::GridDataStructure(file_path);
-  
-  // cout<< row_col_input.GetVectorSize()[0] << "\n"
-  //     << row_col_aliveCells_input.GetVectorSize()[0] << "\n"
-  //     << filePath_aliveCells_input.GetVectorSize()[0] << "\n"
-  //     << row_col_input.GetVectorSize()[1] << "\n"
-  //     << row_col_aliveCells_input.GetVectorSize()[1] << "\n"
-  //     << filePath_aliveCells_input.GetVectorSize()[1] << std::endl;
 
   int error = 0;
-  if (row_col_input.GetVectorSize()[0] != 8){ ++error;}
-  if (row_col_input.GetVectorSize()[1] != 9){ ++error;}
-  if (row_col_aliveCells_input.GetVectorSize()[0] != 8){ ++error;}
-  if (row_col_aliveCells_input.GetVectorSize()[1] != 9){ ++error;}
+  if (row_col_input.GetIndividualCell(4,4) != '-' && row_col_input.GetIndividualCell(4,4) != 'o'){ ++error;}
+  row_col_input.SetIndividualCell(2,4,'-');
+  if (row_col_input.GetIndividualCell(2,4) != '-'){ ++error;}
 
   REQUIRE( error == 0);
 }

@@ -215,9 +215,9 @@ int GridDataStructure::FetchLiveNeighbors(int& rows_coord, int& columns_coord){
 //-----------------------------------------------------------------------------
 vector<int> GridDataStructure::GetVectorSize (){
   vector<int> size_count;
-  int row_size = GridCellInput.size();
+  int row_size = row_input;
   size_count.push_back(row_size);
-  int col_size = GridCellInput[0].size();
+  int col_size = columns_input;
   size_count.push_back(col_size);
   return size_count;
 }
