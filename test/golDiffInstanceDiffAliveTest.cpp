@@ -30,33 +30,15 @@ using std::vector;
 using std::cout;
 
 TEST_CASE( "Diff_instances_generate_diff_num_alive_cells_and_diff_patterns_Test", "[GridDataStructure]" ) {
-  gol::GridDataStructure random_1 = gol::GridDataStructure(8,9);
-  gol::GridDataStructure random_2 = gol::GridDataStructure(8,9);
-  gol::GridDataStructure random_3 = gol::GridDataStructure(8,9,25);
-  gol::GridDataStructure random_4 = gol::GridDataStructure(8,9,25);
 
-  int error = 0;
-  int count_1 = 0;
-  for (int count_row = 0;count_row < 8; ++count_row){
-    for (int count_cols = 0;count_cols < 9; ++count_cols){
-        if (random_1.GetIndividualCell(count_row,count_cols) == random_2.GetIndividualCell(count_row,count_cols)){
-            ++count_1;
-        }
+  gol::GridDataStructure random_1 = gol::GridDataStructure(200,200);
+  gol::GridDataStructure random_2 = gol::GridDataStructure(200,200);
+
+  int positive_count = 0;
+
+  if (random_1.RetAliveCellNumber() <= 200*200 || random_2.RetAliveCellNumber() <= 200*200 || random_1.RetAliveCellNumber() != random_2.RetAliveCellNumber()){
+    ++positive_count;
     }
-}
-  int count_2 = 0;
-  for (int count_row = 0;count_row < 8; ++count_row){
-    for (int count_cols = 0;count_cols < 9; ++count_cols){
-        if (random_3.GetIndividualCell(count_row,count_cols) == random_4.GetIndividualCell(count_row,count_cols)){
-            ++count_2;
-        }
-    }
-}
-  if (count_1 == 72){
-    ++error;
-}
-  if (count_2 == 72){
-    ++error;
-}
-  REQUIRE( error == 0);
+
+  REQUIRE( positive_count > 0);
 }

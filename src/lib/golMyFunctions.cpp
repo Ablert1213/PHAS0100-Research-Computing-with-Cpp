@@ -221,5 +221,11 @@ vector<int> GridDataStructure::GetVectorSize (){
   size_count.push_back(col_size);
   return size_count;
 }
+//-----------------------------------------------------------------------------
+int GridDataStructure::RetAliveCellNumber (){
+  return alive_cell_input;
+}
 
-} // end namespace
+}
+
+ // end namespace
