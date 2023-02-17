@@ -46,7 +46,11 @@ int main(int argc, char* argv[])
             << "More hints: " << "the size of grid and total number of initial alive cells should be reasonable"
             << std::endl;
             }
+        else{
+            throw invalid_argument("Please enter input with right and reasonable arguments");
+            return 0;
         }
+    }
 
     // (1) configure the Game of Life class of file_path input  
     else if (argc == 3){

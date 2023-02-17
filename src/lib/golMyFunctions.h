@@ -44,6 +44,7 @@ class GridDataStructure
     char GetIndividualCell(const int& rows_coord, const int& columns_coord);
     void SetIndividualCell(const int& rows_coord, const int& columns_coord, const char& cell_content);
     int FetchLiveNeighbors(int& rows_coord, int& columns_coord);
+    vector<int> GetVectorSize ();
   protected:
     int row_input;
     int columns_input;
