@@ -15,6 +15,7 @@
 set(_command_line_apps
   golMyFirstApp
   gofSimulator
+  FindStationaryPatterns
 )
 
 foreach(_app ${_command_line_apps})
