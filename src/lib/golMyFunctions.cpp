@@ -45,7 +45,7 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
   row_input = num_rows;
   columns_input = num_columns;
   // initialize random seed:
-  srand (time(NULL));
+	srand((unsigned) time(NULL));
   // randomly choose number of alive cells
   alive_cell_input = rand() % row_input * columns_input;
   // initialised the grid vector
@@ -78,7 +78,7 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
   // initialised the grid vector
   vector<vector<char>> InitialGridCellInput(num_rows, vector<char>(num_columns,'-'));
   // initialize random seed:
-  srand (time(NULL));
+	srand((unsigned) time(NULL));
   // set random x,y coordinates
   for (int count = 0; count < alive_cell_input; ++count){
     int rows_coord = rand() % row_input;

@@ -39,7 +39,7 @@ int main(int argc, char* argv[]){
     if (argc <= 2 ){
         if (argc == 1 || std::strcmp(argv[1],"--help") == 0 || std::strcmp(argv[1],"-h") == 0){
         cerr << "Help message: right format of input arguments to use this command line" << "\n"
-            << "(1) " << "First argument: " << argv[0] << " arguments:"<<" number of rows, number of columns, number of generations to simulate, number of alive cells" << "\n"
+            << "(1) " << "First argument: " << argv[0] << " arguments:"<<" number of rows, number of columns, number of generations to simulate, number of alive cells, number of stills patterns" << "\n"
             << std::endl;
             }
         }
@@ -52,12 +52,14 @@ int main(int argc, char* argv[]){
         int num_stills = std::stoi(argv[5]);
         int stills_found = 0;
     
+        vector<vector<char>> previous_stills_pattern(num_rows, vector<char>(num_columns,'-'));
+
         // initial enter arguments to run the user specified number of calls to the Game of Life class' takeStep method 
         while (stills_found < num_stills){
             // initial current grid and next grid vector
             vector<vector<char>> Next_grid(num_rows, vector<char>(num_columns,'-'));
             gol::ImplementGol current_grid = gol::ImplementGol(num_rows, num_columns,num_alive_cells);
-
+            
             // iteration to generate next generation
             for (int iteration = 1; iteration <= num_generations; ++iteration){
                 current_grid.TakeStep();
@@ -75,12 +77,56 @@ int main(int argc, char* argv[]){
 
                 // if it equal to the previous one, break the loop, add stills_found
                 if (count == num_rows*num_columns){
-                    ++stills_found;
-                    cout<< stills_found<< " stationary patterns found at iteration " << iteration << std::endl;
-                    current_grid.PrintGrid();
-                    break;
-                }
+                    // initialised previous stills pattern
+                    if (stills_found == 0){
+                        for (int count_row = 0;count_row < num_rows; ++count_row){
+                            for (int count_cols = 0;count_cols < num_columns; ++count_cols){
+                                previous_stills_pattern[count_row][count_cols] = current_grid.GetIndividualCell(count_row,count_cols);
+                            }
+                        }
+                        ++stills_found;
+                        cout<< stills_found<< " stationary patterns found at iteration " << iteration << std::endl;
+                        current_grid.PrintGrid();
+                        break;
+                    }
+                    
+                    else{
+                        int previous_check =0;
+                        for (int count_row = 0;count_row < num_rows; ++count_row){
+                            for (int count_cols = 0;count_cols < num_columns; ++count_cols){
+                                if(previous_stills_pattern[count_row][count_cols] == current_grid.GetIndividualCell(count_row,count_cols)){
+                                    ++previous_check;
+                                    // continue;
+                                }
+                                // else{
+                                //     // update previous_still_pattern
+                                //     previous_stills_pattern[count_row][count_cols] = current_grid.GetIndividualCell(count_row,count_cols);
+                                //     ++stills_found;
+                                //     cout<< stills_found<< " stationary patterns found at iteration " << iteration << std::endl;
+                                //     current_grid.PrintGrid();
+                                //     break;
+                            }
+                        }
+                        if (previous_check == num_rows*num_columns){
+                            continue;
+                        }
+                        else{
+                            for (int count_row = 0;count_row < num_rows; ++count_row){
+                                for (int count_cols = 0;count_cols < num_columns; ++count_cols){
+                                    previous_stills_pattern[count_row][count_cols] = current_grid.GetIndividualCell(count_row,count_cols);
+                                    }
+                                }
+                            ++stills_found;
+                            cout<< stills_found<< " stationary patterns found at iteration " << iteration << std::endl;
+                            current_grid.PrintGrid();
+                            break;
+                        }
+                        
+                    }                        
+                    
 
+                    
+                }
                 // if it's not, update Next_grid vector
                 else{
                     // Next_grid = current_grid.GetVector();
