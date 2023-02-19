@@ -29,15 +29,21 @@ using std::string;
 using std::vector;
 using std::cout;
 
-TEST_CASE( "Test_instantiation_of_DataStructureClass", "[GridDataStructure]" ) {
-  gol::GridDataStructure row_col_input = gol::GridDataStructure(8,9);
-  gol::GridDataStructure row_col_aliveCells_input = gol::GridDataStructure(8,9,4);
-  // check generate the grid in right format
-  int error = 0;
-  if (row_col_input.GetVectorSize()[0] != 8){ ++error;}
-  if (row_col_input.GetVectorSize()[1] != 9){ ++error;}
-  if (row_col_aliveCells_input.GetVectorSize()[0] != 8){ ++error;}
-  if (row_col_aliveCells_input.GetVectorSize()[1] != 9){ ++error;}
-
-  REQUIRE( error == 0);
-}
+TEST_CASE( "Inital_grid_from_file_test", "[GridDataStructure]" ) {
+    string file_path = "/workspaces/game-of-life-Ablert1213/test/data/oscillators.txt";
+    gol::GridDataStructure file_input = gol::GridDataStructure (file_path);
+    int error = 0;
+    int check = 0;
+    for (int count_row = 0;count_row < 12; ++count_row){
+        for (int count_cols = 0;count_cols < 12; ++count_cols){
+            if (file_input.GetIndividualCell(count_row,count_cols) == 'o'){
+            ++check; 
+            }
+        }
+    }
+    // check if the file data inputs are correct
+    if (check != 23){ ++error;}
+    if (file_input.GetVectorSize()[0] != 12){ ++error;}
+    if (file_input.GetVectorSize()[1] != 12){ ++error;}
+    REQUIRE( error == 0);
+    }

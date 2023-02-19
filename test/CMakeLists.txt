@@ -21,6 +21,9 @@ set(TEST_CASES
   golDataStructureTest
   golGetSetCellTest
   golDiffInstanceDiffAliveTest
+  golInitialGridFromFileTest
+  golFetchLiveNeighboursTest
+  golTakestepTest
   # Add name of new test file here (without .cpp extension) to build a new test executable
 )
 
@@ -41,5 +44,8 @@ add_test(1File ${EXECUTABLE_OUTPUT_PATH}/golCommandLineArgsTest ${DATA_DIR}/inpu
 add_test(Test_instantiation_of_DataStructureClass ${EXECUTABLE_OUTPUT_PATH}/golDataStructureTest)
 add_test(Get_Set_Cell_Test ${EXECUTABLE_OUTPUT_PATH}/golGetSetCellTest)
 add_test(Diff_instances_generate_diff_num_alive_cells_and_diff_patterns_Test ${EXECUTABLE_OUTPUT_PATH}/golDiffInstanceDiffAliveTest)
+add_test(Initalising_grid_from_file_test ${EXECUTABLE_OUTPUT_PATH}/golInitialGridFromFileTest)
+add_test(Fetch_live_neighbour_test ${EXECUTABLE_OUTPUT_PATH}/golFetchLiveNeighboursTest)
+add_test(Take_step_function_test ${EXECUTABLE_OUTPUT_PATH}/golTakestepTest)
 
 # Add add_test line here to expose a new test executable to CTest

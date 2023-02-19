@@ -92,24 +92,20 @@ int main(int argc, char* argv[]){
                     
                     else{
                         int previous_check =0;
+                        // check if the still pattern we generated is diff as the last one 
                         for (int count_row = 0;count_row < num_rows; ++count_row){
                             for (int count_cols = 0;count_cols < num_columns; ++count_cols){
                                 if(previous_stills_pattern[count_row][count_cols] == current_grid.GetIndividualCell(count_row,count_cols)){
                                     ++previous_check;
-                                    // continue;
+
                                 }
-                                // else{
-                                //     // update previous_still_pattern
-                                //     previous_stills_pattern[count_row][count_cols] = current_grid.GetIndividualCell(count_row,count_cols);
-                                //     ++stills_found;
-                                //     cout<< stills_found<< " stationary patterns found at iteration " << iteration << std::endl;
-                                //     current_grid.PrintGrid();
-                                //     break;
                             }
                         }
+                        // if it is, continue
                         if (previous_check == num_rows*num_columns){
                             continue;
                         }
+                        // if it not, update previous_still_pattern vector and break 
                         else{
                             for (int count_row = 0;count_row < num_rows; ++count_row){
                                 for (int count_cols = 0;count_cols < num_columns; ++count_cols){

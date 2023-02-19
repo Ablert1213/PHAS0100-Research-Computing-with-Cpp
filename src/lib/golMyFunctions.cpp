@@ -166,7 +166,7 @@ void GridDataStructure::PrintGrid(){
 }
 
 //-----------------------------------------------------------------------------
-int GridDataStructure::FetchLiveNeighbors(int& rows_coord, int& columns_coord){
+int GridDataStructure::FetchLiveNeighbors(const int& rows_coord, const int& columns_coord){
   // if (rows_coord < 0 || columns_coord < 0)
   //   throw invalid_argument("Row and Column coordinates inputs should be positive");
   // if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");

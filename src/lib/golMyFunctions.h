@@ -43,7 +43,7 @@ class GridDataStructure
     void PrintGrid();
     char GetIndividualCell(const int& rows_coord, const int& columns_coord);
     void SetIndividualCell(const int& rows_coord, const int& columns_coord, const char& cell_content);
-    int FetchLiveNeighbors(int& rows_coord, int& columns_coord);
+    int FetchLiveNeighbors(const int& rows_coord, const int& columns_coord);
     vector<int> GetVectorSize ();
     int RetAliveCellNumber ();
   protected:
