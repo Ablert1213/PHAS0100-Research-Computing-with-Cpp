@@ -97,6 +97,7 @@ GridDataStructure::GridDataStructure(string& file_path){
   int count = 0;
   if (file_handle.is_open()) {
     string file_line;
+    // read and extract the txt file inputs line by line
     while (std::getline(file_handle, file_line)) {
       vector<char> file_row_input;
       
@@ -116,6 +117,10 @@ GridDataStructure::GridDataStructure(string& file_path){
       }
     GridCellInput.push_back(file_row_input);
     }
+  // To check if the input txt file is empty
+  if (GridCellInput.empty()){
+    throw invalid_argument("Input File is empty");
+  }
   row_input = GridCellInput.size();
   // as number of columns will be the same in one text, so we only take first line to measure.
   columns_input = GridCellInput[0].size();
