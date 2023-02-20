@@ -30,7 +30,7 @@ using std::vector;
 using std::cout;
 
 TEST_CASE( "Inital_grid_from_file_test", "[GridDataStructure]" ) {
-    string file_path = "/workspaces/game-of-life-Ablert1213/test/data/oscillators.txt";
+    string file_path = "/workspaces/PHAS0100Assignment1/test/data/oscillators.txt";
     gol::GridDataStructure file_input = gol::GridDataStructure (file_path);
     int error = 0;
     int check = 0;
