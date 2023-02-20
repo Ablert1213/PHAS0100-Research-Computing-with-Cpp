@@ -56,8 +56,6 @@ int main(int argc, char* argv[])
     else if (argc == 3){
         string file_path = "../test/data/";
         file_path =file_path.append(argv[1]);
-        // cout << argv[2]<< typeid(argv[2]).name()
-        //      << std::stoi(argv[2]) << typeid(std::stoi(argv[2])).name()<<std::endl;
         
         // input file path and number of iterations, initialized the first grid and print it out
         int num_generations = std::stoi(argv[2]);
@@ -66,9 +64,7 @@ int main(int argc, char* argv[])
         current_grid.PrintGrid();
 
         // set loop for number of iterations and print the grid out every time
-        // cout<< 'apple'<< std::endl;
         for (int iteration = 1; iteration <= num_generations; ++iteration){
-            // cout<< 'dog'<< std::endl;
             current_grid.TakeStep();
             cout<< iteration<< " generation grid: "<< std::endl;
             current_grid.PrintGrid();

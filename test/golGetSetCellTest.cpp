@@ -31,7 +31,7 @@ using std::cout;
 
 TEST_CASE( "Get_Set_Cell_Test", "[GridDataStructure]" ) {
   gol::GridDataStructure row_col_input = gol::GridDataStructure(8,9);
-
+  // check the initial grid
   int error = 0;
   if (row_col_input.GetIndividualCell(4,4) != '-' && row_col_input.GetIndividualCell(4,4) != 'o'){ ++error;}
   row_col_input.SetIndividualCell(2,4,'-');

@@ -33,7 +33,7 @@ namespace gol {
 void ImplementGol::TakeStep(){
     int num_alive_neighbors = 0;
     vector<vector<char>> Next_interation_Grid(row_input, vector<char>(columns_input,'-'));
-
+    // check every cell in grid vector
     for (int count_row = 0;count_row < row_input; ++count_row){
         for(int count_cols = 0;count_cols < columns_input; ++count_cols){
             num_alive_neighbors = GridDataStructure::FetchLiveNeighbors(count_row, count_cols);
@@ -54,12 +54,13 @@ void ImplementGol::TakeStep(){
             }
         }
     }
-    // Next_interation_Grid = Next_interation_Grid;
+    // update GridCellInput vector
     Next_interation_Grid.swap(GridCellInput);
   }
 
 //-----------------------------------------------------------------------------
 void ImplementGol::PrintNextGrid(){
+  // print Next_Interation_Grid on screen
   for (int count_row = 0; count_row < row_input; ++count_row){
     for (int count_cols = 0; count_cols < columns_input; ++count_cols){
       cout << Next_interation_Grid[count_row][count_cols] <<" ";

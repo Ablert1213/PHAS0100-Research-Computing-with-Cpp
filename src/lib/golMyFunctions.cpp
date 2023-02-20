@@ -39,9 +39,8 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
   // filter rows and columns inputs 
   if (num_rows < 0 || num_columns < 0)
     throw invalid_argument("Row and Column inputs should be positive");
-  // if (typeid(num_rows).name()!= "i" || typeid(num_columns).name()!= "i");
-  //   throw invalid_argument("Row and Column inputs should be integer");
-  // store the grid
+
+  // store the grid input
   row_input = num_rows;
   columns_input = num_columns;
   // initialize random seed:
@@ -67,11 +66,8 @@ GridDataStructure::GridDataStructure(const int& num_rows, const int& num_columns
   // filter rows and columns inputs 
   if (num_rows < 0 || num_columns < 0 || num_alive_cells < 0)
     throw invalid_argument("Row, Column and alive cells inputs should be positive");
-  // if (typeid(num_rows).name()!= "i" || typeid(num_columns).name()!= "i" || typeid(num_alive_cells).name()!= "i");
-  //   throw invalid_argument("Row, Column and alive cells inputs should be integer");
-  // if (num_alive_cells > num_rows*num_columns);
-  //     throw invalid_argument("The alive cells input can not larger than the total number of cells");
-  // store the grid
+
+  // store the grid input
   row_input = num_rows;
   columns_input = num_columns;
   alive_cell_input = num_alive_cells;
@@ -135,33 +131,20 @@ GridDataStructure::GridDataStructure(string& file_path){
 //-----------------------------------------------------------------------------
 // get individual cell content 
 char GridDataStructure::GetIndividualCell(const int& rows_coord, const int& columns_coord){
-  // if (rows_coord <= 0 || columns_coord <= 0)
-  //   throw invalid_argument("Row and Column coordinates inputs should be positive");
-  // if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
-  //   throw invalid_argument("Row and Column inputs should be integer");
-  // if (rows_coord > row_input || columns_coord > columns_input);
-  //   throw invalid_argument("Row or Column coordinates inputs are out of range");
+// return individual cell value
   return GridCellInput[rows_coord][columns_coord];
 }
 
 //-----------------------------------------------------------------------------
 // set individual cell content 
 void GridDataStructure::SetIndividualCell(const int& rows_coord, const int& columns_coord, const char& cell_content){
-  // if (rows_coord <= 0 || columns_coord <= 0)
-  //   throw invalid_argument("Row and Column coordinates inputs should be positive");
-  // if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
-  //   throw invalid_argument("Row and Column coordinates inputs should be integer");
-  // if (rows_coord > row_input || columns_coord > columns_input);
-  //   throw invalid_argument("Row or Column coordinates inputs are out of range");  
-  // if (typeid(cell_content).name()!= "c");
-  //   throw invalid_argument("Type of cell content input should be char");
-  // if (cell_content != '-' && cell_content != 'o')
-  //   throw invalid_argument("Row and Column inputs are wrong");
+// change individual cell value
   GridCellInput[rows_coord][columns_coord] = cell_content;
 }
 
 //-----------------------------------------------------------------------------
 void GridDataStructure::PrintGrid(){
+  // print grid on screen
   for (int count_row = 0; count_row < row_input; ++count_row){
     for (int count_cols = 0; count_cols < columns_input; ++count_cols){
       cout << GridCellInput[count_row][count_cols] <<" ";
@@ -172,14 +155,6 @@ void GridDataStructure::PrintGrid(){
 
 //-----------------------------------------------------------------------------
 int GridDataStructure::FetchLiveNeighbors(const int& rows_coord, const int& columns_coord){
-  // if (rows_coord < 0 || columns_coord < 0)
-  //   throw invalid_argument("Row and Column coordinates inputs should be positive");
-  // if (typeid(rows_coord).name()!= "i" || typeid(columns_coord).name()!= "i");
-  //   throw invalid_argument("Row and Column coordinates inputs should be integer");
-  // if (rows_coord > row_input || columns_coord > columns_input);
-    // throw invalid_argument("Row or Column coordinates inputs are out of range");
-
-
   // initialised number of alive neighbors
   int num_alive_neighbors = 0; 
   // fetching left live neighbour
@@ -219,6 +194,7 @@ int GridDataStructure::FetchLiveNeighbors(const int& rows_coord, const int& colu
 
 //-----------------------------------------------------------------------------
 vector<int> GridDataStructure::GetVectorSize (){
+  // return size of grid input
   vector<int> size_count;
   int row_size = row_input;
   size_count.push_back(row_size);
@@ -228,6 +204,7 @@ vector<int> GridDataStructure::GetVectorSize (){
 }
 //-----------------------------------------------------------------------------
 int GridDataStructure::RetAliveCellNumber (){
+  // return number of alive cells
   return alive_cell_input;
 }
 
