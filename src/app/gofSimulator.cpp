@@ -40,9 +40,9 @@ int main(int argc, char* argv[])
     if (argc <= 2 ){
         if (argc == 1 || std::strcmp(argv[1],"--help") == 0 || std::strcmp(argv[1],"-h") == 0){
         cerr << "Help message: right format of input arguments to use this command line" << "\n"
-            << "(1) " << "First argument: " << argv[0] << " Other arguments:"<<" text_file_path.txt, number of generations to simulate" << "\n"
-            << "(2) " << "First argument: " << argv[0] << " Other arguments:"<<" number of rows, number of columns, number of generations to simulate" << "\n"
-            << "(3) " << "First argument: " << argv[0] << " Other arguments:"<<" number of rows, number of columns, number of alive cells, number of generations to simulate" << "\n"
+            << "(1) " << "Application Path: " << argv[0] << " Arguments Inputs:"<<" text_file_path.txt, number of generations to simulate" << "\n"
+            << "(2) " << "Application Path: " << argv[0] << " Arguments Inputs:"<<" number of rows, number of columns, number of generations to simulate" << "\n"
+            << "(3) " << "Application Path: " << argv[0] << " Arguments Inputs:"<<" number of rows, number of columns, number of alive cells, number of generations to simulate" << "\n"
             << "More hints: " << "the size of grid and total number of initial alive cells should be reasonable"
             << std::endl;
             }
